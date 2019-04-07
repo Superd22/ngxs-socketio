@@ -1,6 +1,6 @@
-export { NgxsSocketIOPluginModule as NgxsWebsocketPluginModule } from './lib/socket-io.module';
+export { NgxsSocketIOPluginModule } from './lib/socket-io.module';
 export {
-  NgxsSocketIOPluginOptions as NgxsWebsocketPluginOptions,
+  NgxsSocketIOPluginOptions,
   NGXS_SOCKETIO_OPTIONS,
   ConnectSocketIO as ConnectWebSocket,
   SocketIOWebSocket as DisconnectWebSocket,
