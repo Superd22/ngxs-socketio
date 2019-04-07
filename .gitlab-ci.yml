@@ -2,7 +2,8 @@ stages:
     - build
     - release
 cache:
-  - node_modules
+  paths:
+    - node_modules
 
 build:
   image: node:8
@@ -11,8 +12,9 @@ build:
     - yarn install
     - ng-packagr
   artifacts:
-    - dist
-    - node_modules
+    paths:
+      - dist
+      - node_modules
 
 publish:
   image: node:8
