@@ -1,0 +1,23 @@
+stages:
+    - build
+    - release
+cache:
+  - node_modules
+
+build:
+  image: node:8
+  stage: build
+  script:
+    - yarn install
+    - ng-packagr
+  artifacts:
+    - dist
+    - node_modules
+
+publish:
+  image: node:8
+  stage: release
+  only:
+    - master
+  script:
+    - npx semantic-release
