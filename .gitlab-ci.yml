@@ -10,7 +10,7 @@ build:
   stage: build
   script:
     - yarn install
-    - ng-packagr
+    - yarn ng-packagr
   artifacts:
     paths:
       - dist
