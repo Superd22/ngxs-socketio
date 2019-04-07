@@ -1,92 +1,92 @@
 import { InjectionToken } from '@angular/core';
 import ConnectOpts = SocketIOClient.ConnectOpts;
 
-export const NGXS_WEBSOCKET_OPTIONS = new InjectionToken('NGXS_WEBSOCKET_OPTIONS');
+export const NGXS_SOCKETIO_OPTIONS = new InjectionToken('NGXS_SOCKETIO_OPTIONS');
 
-export interface NgxsWebsocketPluginOptions {
-  /**
-   * URL of the websocket.
-   */
-  url?: string;
+export interface NgxsSocketIOPluginOptions {
+    /**
+     * URL of the websocket.
+     */
+    url?: string;
 
-  connectOpts?: ConnectOpts;
+    connectOpts?: ConnectOpts;
 
-  tokenFn?: () => string;
+    tokenFn?: () => string;
 
-  /**
-   * The property name to distigunish this type for the store.
-   * Default: 'type'
-   */
-  typeKey?: string;
+    /**
+     * The property name to distigunish this type for the store.
+     * Default: 'type'
+     */
+    typeKey?: string;
 
-  /**
-   * Interval to try and reconnect.
-   * Default: 5000
-   */
-  reconnectInterval?: number;
+    /**
+     * Interval to try and reconnect.
+     * Default: 5000
+     */
+    reconnectInterval?: number;
 
-  /**
-   * Number of reconnect attemps.
-   * Default: 10
-   */
-  reconnectAttempts?: number;
+    /**
+     * Number of reconnect attemps.
+     * Default: 10
+     */
+    reconnectAttempts?: number;
 
-  /**
-   * Serializer to call before sending messages
-   * Default: `json.stringify`
-   */
-  serializer?: (data: any) => string;
+    /**
+     * Serializer to call before sending messages
+     * Default: `json.stringify`
+     */
+    serializer?: (data: any) => string;
 
-  /**
-   * Deseralizer before publishing the message.
-   */
-  deserializer?: (e: MessageEvent) => any;
+    /**
+     * Deseralizer before publishing the message.
+     */
+    deserializer?: (e: MessageEvent) => any;
 }
 
 export function noop(arg) {
-  return () => {};
+    return () => { };
 }
 
 /**
  * Action to connect to the websocket. Optionally pass a URL.
  */
-export class ConnectWebSocket {
-  static readonly type = '[Websocket] Connect';
-  constructor(public payload?: NgxsWebsocketPluginOptions) {}
+export class ConnectSocketIO {
+    static readonly type = '[SocketIO] Connect';
+    constructor(public payload?: NgxsSocketIOPluginOptions) { }
 }
 
 /**
  * Action triggered when a error ocurrs
  */
-export class WebsocketMessageError {
-  static readonly type = '[Websocket] Message Error';
-  constructor(public payload: any) {}
+export class SocketIOMessageError {
+    static readonly type = '[SocketIO] Message Error';
+    constructor(public payload: any) { }
 }
 
 /**
  * Action to disconnect the websocket.
  */
-export class DisconnectWebSocket {
-  static readonly type = '[Websocket] Disconnect';
+export class SocketIOWebSocket {
+    static readonly type = '[SocketIO] Disconnect';
 }
 
 /**
  * Action to send to the server.
  */
-export class SendWebSocketAction {
-  static readonly type = '[Websocket] Send Action';
-  constructor(public payload: any) {}
+export class SendSocketIOAction {
+    static readonly type = '[SocketIO] Send Action';
+    constructor(public payload: any) { }
 }
 
-export class WebSocketConnected {
-  static readonly type = '[Websocket] Connected';
-  constructor(public payload: { socketId: string }) {}
+export class SocketIOConnected {
+    static readonly type = '[SocketIO] Connected';
+    constructor(public payload: { socketId: string }) { }
 }
 
-export class WebSocketDisconnected {
-  static readonly type = '[Websocket] Disconnected';
+export class SocketIODisconnected {
+    static readonly type = '[SocketIO] Disconnected';
 }
 
-export class AuthenticateWebSocket {
-  static readonly type = '[Websocket] authenticate';
+export class AuthenticateSocketIO {
+    static readonly type = '[SocketIO] authenticate';
 }

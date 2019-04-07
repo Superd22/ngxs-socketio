@@ -1,12 +1,12 @@
-export { NgxsWebsocketPluginModule } from './lib/websocket.module';
+export { NgxsSocketIOPluginModule as NgxsWebsocketPluginModule } from './lib/socket-io.module';
 export {
-  NgxsWebsocketPluginOptions,
-  NGXS_WEBSOCKET_OPTIONS,
-  ConnectWebSocket,
-  DisconnectWebSocket,
-  WebSocketConnected,
-  WebSocketDisconnected,
-  AuthenticateWebSocket,
-  SendWebSocketAction,
-  WebsocketMessageError,
+  NgxsSocketIOPluginOptions as NgxsWebsocketPluginOptions,
+  NGXS_SOCKETIO_OPTIONS,
+  ConnectSocketIO as ConnectWebSocket,
+  SocketIOWebSocket as DisconnectWebSocket,
+  SocketIOConnected as WebSocketConnected,
+  SocketIODisconnected as WebSocketDisconnected,
+  AuthenticateSocketIO as AuthenticateWebSocket,
+  SendSocketIOAction as SendWebSocketAction,
+  SocketIOMessageError as WebsocketMessageError,
 } from './lib/symbols';

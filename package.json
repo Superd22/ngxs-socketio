@@ -8,5 +8,9 @@
   "dependencies": {
     "@ngxs/store": ">=3.4.0",
     "socket.io-client": ">=2.2.0"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.32",
+    "rxjs": "^6.4.0"
   }
 }
