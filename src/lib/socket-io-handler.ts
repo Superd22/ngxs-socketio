@@ -11,6 +11,7 @@ import {
     SocketIOMessageError,
     SocketIOConnected,
     SocketIODisconnected,
+    SendSocketIOEvent as SendSocketIOEvent,
 } from './symbols';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -28,6 +29,11 @@ export class SocketIOHandler {
             const type = getActionTypeFromInstance(payload);
             socket.send({ ...payload, type });
         });
+
+        actions.pipe(ofActionDispatched(SendSocketIOEvent)).subscribe((action: SendSocketIOEvent) => {
+            socket.send({ ...action.payload }, action.eventName);
+        })
+
         actions.pipe(ofActionDispatched(AuthenticateSocketIO)).subscribe(event => socket.auth({ sumo: 1 }));
         socket.connectionStatus.pipe(distinctUntilChanged()).subscribe(status => {
             if (status) {

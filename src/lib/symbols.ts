@@ -70,6 +70,31 @@ export class SocketIOWebSocket {
     static readonly type = '[SocketIO] Disconnect';
 }
 
+
+/**
+ * Send message to socket io
+ */
+export class SendSocketIOEvent<T=any> {
+    static readonly type = '[SocketIO] Send Message';
+
+    /** data we want to send */
+    public payload: T;
+    /** name of the event for socketio, defaults to 'actions' */
+    public eventName = "actions";
+
+    /**
+     * @param payload the data to send via socket-io
+     * @param name type of event to send
+     */
+    constructor(payload: T)
+    constructor(payload: T, name: string)
+    constructor(payload: T, name?: string) {
+        this.payload = payload;
+        if (name) this.eventName = name;
+    }
+}
+
+
 /**
  * Action to send to the server.
  */
