@@ -30,6 +30,7 @@ export class SocketIOSubject extends Subject<any> {
             url: this.configPrivate.url,
             serializer: this.configPrivate.serializer,
             deserializer: this.configPrivate.deserializer,
+            eventNameForActions: this.configPrivate.eventForActions,
             closeObserver: {
                 next: (e: CloseEvent) => {
                     this.connectionStatus.next(false);
@@ -109,6 +110,6 @@ export class SocketIOSubject extends Subject<any> {
             throw new Error('You must connect before sending data');
         }
 
-        this.socketPrivate.next({ event: event ? event : 'actions', data });
+        this.socketPrivate.next({ event: event ? event : this.configPrivate.eventForActions, data });
     }
 }

@@ -19,6 +19,13 @@ export interface NgxsSocketIOPluginOptions {
      */
     typeKey?: string;
 
+
+    /**
+     * The name of the SocketIO event to use to listen for actions
+     * Default: 'actions'
+     */
+    eventForActions?: string;
+
     /**
      * Interval to try and reconnect.
      * Default: 5000

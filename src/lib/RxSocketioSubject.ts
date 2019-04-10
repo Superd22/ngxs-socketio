@@ -19,6 +19,11 @@ export interface RxSocketioSubjectConfig<T> {
     /** @deprecated use {@link deserializer} */
     resultSelector?: (e: MessageEvent) => T;
     /**
+     * The name of the SocketIO event to use to listen for actions
+     * Default: 'actions'
+     */
+    eventNameForActions?: string;
+    /**
      * A serializer used to create messages from passed values before the
      * messages are sent to the server. Defaults to JSON.stringify.
      */
@@ -96,7 +101,7 @@ export class RxSocketioSubject<T> extends AnonymousSubject<T> {
 
         this.socketPrivate.on('disconnect', event => config.closeObserver.next(event));
 
-        this.socketPrivate.on('actions', data => this.outputPrivate.next(data));
+        this.socketPrivate.on(config.eventNameForActions, data => this.outputPrivate.next(data));
 
         this.socketPrivate.on('reconnect_attempt', () => {
             if (config.tokenFn && typeof config.tokenFn === 'function') {

@@ -10,6 +10,7 @@ export function websocketOptionsFactory(options: NgxsSocketIOPluginOptions) {
         reconnectInterval: 5000,
         reconnectAttempts: 10,
         typeKey: 'type',
+        eventNameForActions: 'actions',
         deserializer(e: MessageEvent) {
             return JSON.parse(e.data);
         },
