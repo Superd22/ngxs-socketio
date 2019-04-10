@@ -25,12 +25,11 @@ export class SocketIOSubject extends Subject<any> {
 
     constructor(@Inject(NGXS_SOCKETIO_OPTIONS) private configPrivate: NgxsSocketIOPluginOptions) {
         super();
-
         this.internalConfigPrivate = {
             url: this.configPrivate.url,
             serializer: this.configPrivate.serializer,
             deserializer: this.configPrivate.deserializer,
-            eventNameForActions: this.configPrivate.eventForActions,
+            eventForActions: this.configPrivate.eventForActions,
             closeObserver: {
                 next: (e: CloseEvent) => {
                     this.connectionStatus.next(false);

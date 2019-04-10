@@ -22,4 +22,4 @@ publish:
   only:
     - master
   script:
-    - npx semantic-release
+    - yarn semantic-release

@@ -6,11 +6,11 @@ import { SocketIOSubject } from './socket-io-subject';
 import { noop } from './symbols';
 
 export function websocketOptionsFactory(options: NgxsSocketIOPluginOptions) {
-    return {
+    const lol = {
         reconnectInterval: 5000,
         reconnectAttempts: 10,
         typeKey: 'type',
-        eventNameForActions: 'actions',
+        eventForActions: 'actions',
         deserializer(e: MessageEvent) {
             return JSON.parse(e.data);
         },
@@ -19,6 +19,9 @@ export function websocketOptionsFactory(options: NgxsSocketIOPluginOptions) {
         },
         ...options,
     };
+
+    console.log(lol);
+    return lol;
 }
 
 export const USER_OPTIONS = new InjectionToken('USER_OPTIONS');
